@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MEDBAY</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-image: url('https://img.freepik.com/free-photo/medical-equipment-with-copy-space_23-2148519736.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            color: #fff;
+        }
+        header {
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 20px 0;
+            text-align: center;
+            color: #fff;
+        }
+        header h1 {
+            font-size: 2.5em;
+        }
+        header h2 {
+            font-size: 1.5em;
+        }
+        nav {
+            display: flex;
+            justify-content: center;
+            background: red;
+            padding: 10px 0;
+        }
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.2em;
+            margin: 0 15px;
+            transition: transform 0.2s;
+        }
+        nav a:hover {
+            transform: scale(1.1);
+        }
+        .container {
+            padding: 20px;
+            background-color: rgba(0, 0, 0, 0.6);
+            margin: 20px auto;
+            border-radius: 10px;
+            max-width: 800px;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            padding-right: 0px;
+        }
+        .button {
+            width: 100%;
+            padding: 12px;
+            background: #007BFF;
+            color: white;
+            border: none;
+            font-size: 18px;
+            font-weight: bold;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .button:hover {
+            background: #0056b3;
+        }
+        .output {
+            display: none;
+            margin-top: 20px;
+            padding: 20px;
+            background: rgba(0, 255, 0, 0.2);
+            border: 1px solid green;
+            border-radius: 5px;
+        }
+        footer {
+            text-align: center;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.7);
+        }
+        footer a {
+            color: #00e6e6;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>MEDBAY🩺</h1>
+        <h2>Your Immediate Medical Assist!!</h2>
+    </header>
+    <nav>
+        <marquee>
+            <h2>Get <u>flat 50%</u> offer on full body checkup. Limited time offer!!</h2>
+        </marquee>
+    </nav>
+    <div class="container">
+        <h2 align="center">Appointment Details</h2>
+        <form id="appointmentForm">
+            <div class="form-group">
+                <label for="name">Your Name:</label>
+                <input type="text" id="name" placeholder="Enter your name" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Your Email:</label>
+                <input type="email" id="email" placeholder="Enter your email" required>
+            </div>
+            <div class="form-group">
+                <label for="phone">Your Phone Number:</label>
+                <input type="tel" id="phone" placeholder="Enter your phone number" required>
+            </div>
+            <div class="form-group">
+                <label for="specialty">Select Specialty:</label>
+                <select id="specialty">
+                    <option value="General">General</option>
+                    <option value="Pediatrics">Pediatrics</option>
+                    <option value="Cardiology">Cardiology</option>
+                    <option value="Neurology">Neurology</option>
+                    <option value="Urology">Urology</option>
+                    <option value="Dermatology">Dermatology</option>
+                    <option value="Orthopedics">Orthopedics</option>
+                    <option value="Ophthalmology">Ophthalmology</option>
+                    <option value="Psychiatry">Psychiatry</option>
+                    <option value="Pulmonology">Pulmonology</option>
+                    <option value="Radiology">Radiology</option>
+                    <option value="Gynecology">Gynecology</option>
+                    <option value="Anesthetics">Anesthetics</option>
+                </select>
+            </div>
+            <button type="submit" class="button">Submit</button>
+        </form>
+        <div id="output" class="output">
+            <h3>Appointment Confirmed!</h3>
+            <p><strong>Name:</strong> <span id="displayName"></span></p>
+            <p><strong>Email:</strong> <span id="displayEmail"></span></p>
+            <p><strong>Phone Number:</strong> <span id="displayPhone"></span></p>
+            <p><strong>Specialty:</strong> <span id="displaySpecialty"></span></p>
+            <p><strong>Fee:</strong> ₹<span id="displayFee"></span></p>
+            <p><strong>Appointment Time:</strong> <span id="displayTime"></span></p>
+            <p><strong>Token Number:</strong> <span id="displayToken"></span></p>
+        </div>
+    </div>
+    <footer>
+        <p>Ph: 733 770 2790 | 080-885508855 | E-mail: <a href="mailto:Surjithsshettybtech24@rvu.edu.in">Surjithsshettybtech24@rvu.edu.in</a></p>
+        <p>&copy; 2024 MEDBAY | Caring for You, Always!</p>
+    </footer>
+
+    
+    <script>
+        const form = document.getElementById('appointmentForm');
+        const output = document.getElementById('output');
+
+        const specialtyFees = {
+            General:500,
+            Pediatrics: 1000,
+            Cardiology: 2000,
+            Neurology: 2500,
+            Urology: 1500,
+            Dermatology: 1200,
+            Orthopedics: 1800,
+            Ophthalmology: 1400,
+            Psychiatry: 1600,
+            Pulmonology: 2200,
+            Radiology: 2000,
+            Gynecology: 3000,
+            Anesthetics: 2800,
+        };
+
+        const morningTimes = ["8:00 AM", "9:00 AM", "10:00 AM", "11:00 AM", "12:00 PM"];
+        const eveningTimes = ["2:00 PM", "3:00 PM", "4:00 PM", "5:00 PM", "6:00 PM", "7:00 PM", "8:00 PM", "9:00 PM"];
+        let tokenNumber = 100;
+
+        function getRandomTime() {
+            const isMorning = Math.random() < 0.5;
+            const times = isMorning ? morningTimes : eveningTimes;
+            return times[Math.floor(Math.random() * times.length)];
+        }
+
+        form.addEventListener('submit', function (event) {
+            event.preventDefault();
+
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const phone = document.getElementById('phone').value;
+            const specialty = document.getElementById('specialty').value;
+
+            const fee = specialtyFees[specialty];
+            const appointmentTime = getRandomTime();
+
+            document.getElementById('displayName').textContent = name;
+            document.getElementById('displayEmail').textContent = email;
+            document.getElementById('displayPhone').textContent = phone;
+            document.getElementById('displaySpecialty').textContent = specialty;
+            document.getElementById('displayFee').textContent = fee;
+            document.getElementById('displayTime').textContent = appointmentTime;
+            document.getElementById('displayToken').textContent = tokenNumber++;
+
+            output.style.display = 'block';
+            form.reset();
+        });
+    </script>
+</body>
+</html>
